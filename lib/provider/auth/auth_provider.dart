@@ -6,6 +6,7 @@ class AuthProvider extends ChangeNotifier {
   User? users;
   bool isLoading = true;
 
+
   AuthProvider() {
     checkLoginOrRegister();
   }
@@ -20,6 +21,7 @@ class AuthProvider extends ChangeNotifier {
 
   getUser() {
     users = auth.currentUser;
+
     notifyListeners();
   }
 
@@ -44,9 +46,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
       getUser();
-      print('entrando');
     } on FirebaseAuthException catch (e) {
-      print('erro');
       if (e.code == 'user-not-found' || e.code == 'invalid-email') {
         throw AuthException('Email não foi encontrado.');
       } else if (e.code == 'wrong-password') {

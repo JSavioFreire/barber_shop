@@ -1,3 +1,4 @@
+import 'package:barber_shop/components/animations/loading_animation.dart';
 import 'package:barber_shop/provider/auth/function_provider.dart';
 import 'package:barber_shop/screens/auth/components/forms/login/login_form.dart';
 import 'package:barber_shop/screens/auth/components/forms/register/register_form.dart';
@@ -53,7 +54,7 @@ class AllForm extends StatelessWidget {
                     }
                   },
                   child: functionsAuthProvider.buttonInLoading
-                      ? const CircularProgressIndicator()
+                      ? const LoadingAnimation()
                       : Text(
                           textElevatedButton,
                           style: const TextStyle(

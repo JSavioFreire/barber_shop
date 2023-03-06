@@ -4,18 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FunctionsAuthProvider extends ChangeNotifier {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-
-    TextEditingController registerNameController = TextEditingController();
-    TextEditingController registerEmailController = TextEditingController();
-    TextEditingController registerPhoneController = TextEditingController();
-    TextEditingController registerPasswordController = TextEditingController();
-    TextEditingController registerConfirmPasswordController =
-        TextEditingController();
-
+  TextEditingController registerNameController = TextEditingController();
+  TextEditingController registerEmailController = TextEditingController();
+  TextEditingController registerPhoneController = TextEditingController();
+  TextEditingController registerPasswordController = TextEditingController();
+  TextEditingController registerConfirmPasswordController =
+      TextEditingController();
 
   bool buttonInLoading = false;
   bool isRegister = false;

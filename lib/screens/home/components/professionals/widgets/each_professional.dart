@@ -17,7 +17,10 @@ class EachProfessional extends StatelessWidget {
               color: Colors.white, borderRadius: BorderRadius.circular(35)),
           child: Image.asset(image),
         ),
-        Text(name)
+        Text(
+          name,
+          style: const TextStyle(fontSize: 16),
+        )
       ],
     );
   }

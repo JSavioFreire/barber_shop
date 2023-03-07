@@ -7,33 +7,63 @@ class Services extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: Container(
-        color: Colors.white,
-        width: MediaQuery.of(context).size.width,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Serviços',
-                style: TextStyle(color: ThemeColors.background, fontSize: 20),
-              ),
-              SizedBox(
-                height: 600,
-                child: Expanded(
-                    child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 5,
+    return Container(
+      color: Colors.white,
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Serviços',
+              style: TextStyle(color: ThemeColors.background, fontSize: 20),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const <EachService>[
+                        EachService(
+                          name: 'Corte',
+                          image: 'assets/scissor.jpg',
                         ),
-                        itemBuilder: (context, index) => EachService())),
-              )
-            ],
-          ),
+                        EachService(
+                          name: 'Barba',
+                          image: 'assets/barber.jpg',
+                        ),
+                        EachService(
+                          name: 'Secagem',
+                          image: 'assets/hair.jpg',
+                        )
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const <EachService>[
+                      EachService(
+                        name: 'Maquina',
+                        image: 'assets/mac.jpg',
+                      ),
+                      EachService(
+                        name: 'Lavagem',
+                        image: 'assets/clean.jpg',
+                      ),
+                      EachService(
+                        name: 'Escova',
+                        image: 'assets/prog.jpg',
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );

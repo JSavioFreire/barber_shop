@@ -28,7 +28,11 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Professionals(),
             ),
-            Services()
+            
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Services(),
+            )
           ],
         ),
       ),

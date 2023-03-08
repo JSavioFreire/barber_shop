@@ -15,7 +15,7 @@ class EachProfessional extends StatelessWidget {
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(35)),
-          child: Image.asset(image),
+          child: Image.network(image),
         ),
         Text(
           name,

@@ -1,13 +1,12 @@
+import 'package:barber_shop/components/drawer/drawer.dart';
 import 'package:barber_shop/components/footer/footer.dart';
 import 'package:barber_shop/components/header/header.dart';
-import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
+import 'package:barber_shop/screens/home/components/appointment/appointment.dart';
 import 'package:barber_shop/screens/home/components/box/box_primary.dart';
-import 'package:barber_shop/screens/home/components/hour/hour.dart';
 import 'package:barber_shop/screens/home/components/professionals/professionals.dart';
 import 'package:barber_shop/screens/home/components/all_services/services.dart';
 import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: ThemeColors.background,
+      endDrawer: const MyDrawer(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(top: 20),
-              child: Hour(),
+              child: Appointment(),
             ),
             Padding(
               padding: EdgeInsets.only(

@@ -1,9 +1,16 @@
 import 'package:barber_shop/provider/auth/auth_provider.dart';
+import 'package:barber_shop/provider/db/admin/admin_user.dart';
 import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class FunctionsAuthProvider extends ChangeNotifier {
+  BuildContext context;
+  FunctionsAuthProvider({required this.context});
+
+  late AdminUserProvider adminUserProvider =
+      Provider.of<AdminUserProvider>(context, listen: false);
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -52,14 +59,18 @@ class FunctionsAuthProvider extends ChangeNotifier {
       required email,
       required password,
       required name,
-      required phone}) async {
+      required phone,
+      required id}) async {
     buttonInLoading = true;
     notifyListeners();
     try {
       await context
           .read<AuthProvider>()
-          .register(email.text, password.text, name.text, phone.text);
+          .register(email.text, password.text, name.text);
       buttonInLoading = false;
+
+      adminUserProvider.isAdminToDb();
+
       notifyListeners();
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context)

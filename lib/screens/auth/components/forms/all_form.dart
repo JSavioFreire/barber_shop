@@ -4,6 +4,7 @@ import 'package:barber_shop/screens/auth/components/forms/login/login_form.dart'
 import 'package:barber_shop/screens/auth/components/forms/register/register_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class AllForm extends StatelessWidget {
   const AllForm({super.key});
@@ -44,7 +45,7 @@ class AllForm extends StatelessWidget {
                                 .registerPasswordController,
                             name: functionsAuthProvider.registerNameController,
                             phone:
-                                functionsAuthProvider.registerPhoneController);
+                                functionsAuthProvider.registerPhoneController, id: const Uuid());
                       } else {
                         functionsAuthProvider.login(
                             context: context,

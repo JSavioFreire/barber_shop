@@ -12,7 +12,7 @@ class Professionals extends StatelessWidget {
     ProfessionalDbProvider professionalDbProvider =
         Provider.of<ProfessionalDbProvider>(context);
     professionalDbProvider.proFromDb();
-    
+
     return Column(
       children: [
         Padding(
@@ -36,7 +36,24 @@ class Professionals extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 15),
           child: professionalDbProvider.loadingPro
-              ? CircularProgressIndicator()
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    for (int i = 0; i < 3; i++)
+                      ClipOval(
+                        child: Container(
+                          width: 70,
+                          height: 70,
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: const Color.fromRGBO(211, 211, 211, 1),
+                              borderRadius: BorderRadius.circular(35)),
+                          child: Lottie.asset('assets/loading_skeleton.json',
+                              fit: BoxFit.cover),
+                        ),
+                      )
+                  ],
+                )
               : Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <EachProfessional>[

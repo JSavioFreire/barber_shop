@@ -10,13 +10,12 @@ class EachProfessional extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 70,
-          height: 70,
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(35)),
-          child: Image.network(image),
-        ),
+            width: 70,
+            height: 70,
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(35)),
+            child: Image.asset(image)),
         Text(
           name,
           style: const TextStyle(fontSize: 16),

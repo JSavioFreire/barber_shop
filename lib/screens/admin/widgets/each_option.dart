@@ -22,12 +22,11 @@ class EachOption extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8),
             child: Icon(
               icon,
-              color: Colors.black,
             ),
           ),
           Text(
             name,
-            style: const TextStyle(fontSize: 18, color: Colors.black),
+            style: const TextStyle(fontSize: 18),
           )
         ]),
       ),

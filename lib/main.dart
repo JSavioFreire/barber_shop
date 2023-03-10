@@ -1,7 +1,6 @@
 import 'package:barber_shop/firebase_options.dart';
 import 'package:barber_shop/provider/auth/auth_provider.dart';
 import 'package:barber_shop/provider/auth/function_provider.dart';
-import 'package:barber_shop/provider/db/admin/admin_user.dart';
 import 'package:barber_shop/provider/db/appointment/appointment.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
 import 'package:barber_shop/service/check_is_login.dart';
@@ -20,8 +19,6 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => AuthProvider()),
-      ChangeNotifierProvider(
-          create: (context) => AdminUserProvider(context: context)),
       ChangeNotifierProvider(
           create: (context) => FunctionsAuthProvider(context: context)),
       ChangeNotifierProvider(create: (context) => ProfessionalDbProvider()),

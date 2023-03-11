@@ -1,20 +1,25 @@
+import 'package:barber_shop/provider/db/admin/functions_admin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AuthProvider extends ChangeNotifier {
-  FirebaseAuth auth = FirebaseAuth.instance;
-  User? users;
-  bool isLoading = true;
+  BuildContext context;
 
-
-  AuthProvider() {
+  AuthProvider({required this.context}) {
     checkLoginOrRegister();
   }
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  late FunctionsAdm functionsAdm = Provider.of<FunctionsAdm>(context, listen: false);
+  User? users;
+  bool isLoading = true;
 
   void checkLoginOrRegister() {
     auth.authStateChanges().listen((User? user) {
       users = (user == null) ? null : user;
       isLoading = false;
+      functionsAdm.checkIsAdmin(user!.email.toString());
       notifyListeners();
     });
   }
@@ -30,7 +35,7 @@ class AuthProvider extends ChangeNotifier {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       await users!.updateDisplayName(name);
-      
+
       getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

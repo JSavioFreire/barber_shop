@@ -1,4 +1,4 @@
-import 'package:barber_shop/provider/db/admin/functions/functions_admin.dart';
+import 'package:barber_shop/provider/db/admin/functions_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

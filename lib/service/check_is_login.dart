@@ -1,5 +1,6 @@
 import 'package:barber_shop/provider/auth/auth_provider.dart';
 import 'package:barber_shop/provider/auth/function_provider.dart';
+import 'package:barber_shop/provider/db/admin/functions_admin.dart';
 import 'package:barber_shop/screens/admin/admin_screen.dart';
 import 'package:barber_shop/screens/auth/auth_screen.dart';
 import 'package:barber_shop/screens/home/home.dart';
@@ -13,15 +14,13 @@ class CheckIsLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
-
-    FunctionsAuthProvider functionsAuthProvider =
-        Provider.of<FunctionsAuthProvider>(context);
+    FunctionsAdm functionsAdm = Provider.of<FunctionsAdm>(context);
 
     if (authProvider.users == null) {
       return const AuthScreen();
-    } else if (functionsAuthProvider.isAdmin == null) {
+    } else if (functionsAdm.isAdmin == null) {
       return const LoadingScreen();
-    } else if (functionsAuthProvider.isAdmin == true) {
+    } else if (functionsAdm.isAdmin == true) {
       return const AdminScreen();
     } else {
       return const HomeScreen();

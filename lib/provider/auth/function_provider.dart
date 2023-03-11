@@ -1,5 +1,6 @@
 import 'package:barber_shop/model/users_info.dart';
 import 'package:barber_shop/provider/auth/auth_provider.dart';
+import 'package:barber_shop/provider/db/admin/functions_admin.dart';
 import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ class FunctionsAuthProvider extends ChangeNotifier {
   BuildContext context;
   FunctionsAuthProvider({required this.context});
 
-  late AuthProvider authProvider = Provider.of<AuthProvider>(context);
+  late AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
+  late FunctionsAdm functionsAdm = Provider.of<FunctionsAdm>(context, listen: false);
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -24,9 +27,6 @@ class FunctionsAuthProvider extends ChangeNotifier {
   bool buttonInLoading = false;
   bool isRegister = false;
   bool iconVisibility = true;
-  dynamic isAdmin;
-
-  bool load = true;
 
   void changeLoginToRegister() {
     isRegister = !isRegister;
@@ -37,27 +37,13 @@ class FunctionsAuthProvider extends ChangeNotifier {
       {required BuildContext context,
       required TextEditingController email,
       required TextEditingController password}) async {
-    isAdmin = null;
+    functionsAdm.isAdmin = null;
     buttonInLoading = true;
     notifyListeners();
     try {
       await context.read<AuthProvider>().login(email.text, password.text);
       buttonInLoading = false;
-
-      DocumentSnapshot<Map<String, dynamic>> snapshot =
-          await db.collection('userInfo').doc(email.text).get();
-
-      if (snapshot.exists) {
-        final data = snapshot.data();
-        if (data != null &&
-            data.containsKey('isAdmin') &&
-            data['isAdmin'] == true) {
-          isAdmin = data['isAdmin'];
-        } else {
-          isAdmin = false;
-        }
-      }
-      load = false;
+      functionsAdm.checkIsAdmin(email.text);
       notifyListeners();
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -80,14 +66,14 @@ class FunctionsAuthProvider extends ChangeNotifier {
       required id}) async {
     buttonInLoading = true;
     notifyListeners();
-    isAdmin = null;
+    functionsAdm.isAdmin = null;
 
     try {
       await context
           .read<AuthProvider>()
           .register(email.text, password.text, name.text);
       buttonInLoading = false;
-      isAdmin = false;
+      functionsAdm.isAdmin = false;
 
       UserInfoModel userInfo = UserInfoModel(isAdmin: false);
       await db.collection('userInfo').doc(email.text).set(userInfo.toMap());

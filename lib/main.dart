@@ -8,8 +8,7 @@ import 'package:barber_shop/theme/my_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'provider/db/admin/functions/functions_admin.dart';
+import 'provider/db/admin/functions_admin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,13 +17,13 @@ void main() async {
   );
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => AuthProvider()),
+      ChangeNotifierProvider(create: (context) => FunctionsAdm()),
+      ChangeNotifierProvider(create: (context) => AuthProvider(context: context)),
       ChangeNotifierProvider(
           create: (context) => FunctionsAuthProvider(context: context)),
       ChangeNotifierProvider(create: (context) => ProfessionalDbProvider()),
       ChangeNotifierProvider(
           create: (context) => AppointmentProvider(context: context)),
-      ChangeNotifierProvider(create: (context) => FunctionsAdm()),
     ],
     child: const MyApp(),
   ));

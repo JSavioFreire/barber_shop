@@ -1,4 +1,5 @@
 import 'package:barber_shop/model/appointment.dart';
+import 'package:barber_shop/model/professional.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

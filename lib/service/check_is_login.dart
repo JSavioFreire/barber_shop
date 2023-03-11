@@ -1,5 +1,4 @@
 import 'package:barber_shop/provider/auth/auth_provider.dart';
-import 'package:barber_shop/provider/auth/function_provider.dart';
 import 'package:barber_shop/provider/db/admin/functions_admin.dart';
 import 'package:barber_shop/screens/admin/admin_screen.dart';
 import 'package:barber_shop/screens/auth/auth_screen.dart';

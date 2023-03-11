@@ -1,10 +1,16 @@
+import 'package:barber_shop/provider/time/time.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Marked extends StatelessWidget {
   const Marked({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Time time = Provider.of<Time>(context);
+
+    var teste = time.currentDateHour();
+
     return Padding(
       padding: const EdgeInsets.all(12),
       child: GridView.builder(

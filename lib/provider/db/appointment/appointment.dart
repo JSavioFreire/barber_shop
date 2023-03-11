@@ -1,5 +1,4 @@
 import 'package:barber_shop/model/appointment.dart';
-import 'package:barber_shop/model/professional.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ class AppointmentProvider extends ChangeNotifier {
   FirebaseFirestore db = FirebaseFirestore.instance;
 
   late ProfessionalDbProvider professionalDbProvider =
-      Provider.of<ProfessionalDbProvider>(context);
+      Provider.of<ProfessionalDbProvider>(context, listen: false);
 
-  List<AppointmentModel> listAppointment = [];
+  late List<AppointmentModel> listAppointment = [];
 }

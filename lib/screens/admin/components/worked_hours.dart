@@ -8,7 +8,7 @@ class WorkedHours extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(12),
         child: ListView(
-          children: [Text('Hoje')],
+          children: const [Text('Hoje')],
         ));
   }
 }

@@ -3,6 +3,7 @@ import 'package:barber_shop/provider/auth/auth_provider.dart';
 import 'package:barber_shop/provider/auth/function_provider.dart';
 import 'package:barber_shop/provider/db/appointment/appointment.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
+import 'package:barber_shop/provider/time/time.dart';
 import 'package:barber_shop/service/check_is_login.dart';
 import 'package:barber_shop/theme/my_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -12,13 +13,16 @@ import 'provider/db/admin/functions_admin.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MultiProvider(
     providers: [
+      ChangeNotifierProvider(create: (context) => Time()),
       ChangeNotifierProvider(create: (context) => FunctionsAdm()),
-      ChangeNotifierProvider(create: (context) => AuthProvider(context: context)),
+      ChangeNotifierProvider(
+          create: (context) => AuthProvider(context: context)),
       ChangeNotifierProvider(
           create: (context) => FunctionsAuthProvider(context: context)),
       ChangeNotifierProvider(create: (context) => ProfessionalDbProvider()),

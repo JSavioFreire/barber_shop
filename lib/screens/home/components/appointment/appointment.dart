@@ -1,5 +1,6 @@
 import 'package:barber_shop/provider/db/appointment/appointment.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
+import 'package:barber_shop/screens/home/components/appointment/widgets/each_hour.dart';
 import 'package:barber_shop/screens/home/components/appointment/widgets/see_more.dart';
 import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,10 @@ class Appointment extends StatelessWidget {
                           )
                         : GridView.builder(
                             itemCount:
-                                appointmentProvider.listAppointment.length,
+                                appointmentProvider.listAppointment.length >= 8
+                                    ? 8
+                                    : appointmentProvider
+                                        .listAppointment.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 4,
@@ -119,11 +123,9 @@ class Appointment extends StatelessWidget {
                                               'assets/loading_skeleton.json'),
                                         ),
                                       )
-                                    : Container(
-                                        width: 30,
-                                        height: 30,
-                                        color: Colors.red,
-                                      )),
+                                    : EachHour(
+                                        appointmentModel: appointmentProvider
+                                            .listAppointment[index])),
                           ))
           ],
         ),

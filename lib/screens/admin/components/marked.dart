@@ -10,7 +10,8 @@ class Marked extends StatelessWidget {
     Time time = Provider.of<Time>(context);
 
     var teste = time.currentDateHour();
-
+    print(teste);
+    
     return Padding(
       padding: const EdgeInsets.all(12),
       child: GridView.builder(

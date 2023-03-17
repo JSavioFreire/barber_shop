@@ -19,7 +19,7 @@ class MyBottomNavigation extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.work_history_outlined),
-          label: 'Alterar Horas Trabalhadas',
+          label: 'Alterar Dias Trabalhadas',
         )
       ],
       currentIndex: functionsAdm.navigationBottomController,

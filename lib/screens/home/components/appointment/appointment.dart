@@ -33,7 +33,7 @@ class Appointment extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(left: 12),
                   child: Text(
-                    'Próximos horário disponíveis',
+                    'Horários disponíveis para hoje',
                     style:
                         TextStyle(color: ThemeColors.background, fontSize: 20),
                   ),

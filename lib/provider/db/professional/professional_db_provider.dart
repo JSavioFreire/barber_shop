@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 class ProfessionalDbProvider extends ChangeNotifier {
   FirebaseFirestore db = FirebaseFirestore.instance;
+  ProfessionalDbProvider() {
+    proFromDb();
+  }
 
   List listPro = [];
   bool loadingPro = true;

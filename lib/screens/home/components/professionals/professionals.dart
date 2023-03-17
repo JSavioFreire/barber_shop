@@ -11,7 +11,6 @@ class Professionals extends StatelessWidget {
   Widget build(BuildContext context) {
     ProfessionalDbProvider professionalDbProvider =
         Provider.of<ProfessionalDbProvider>(context);
-    professionalDbProvider.proFromDb();
 
     return Column(
       children: [

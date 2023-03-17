@@ -2,8 +2,8 @@ import 'package:barber_shop/firebase_options.dart';
 import 'package:barber_shop/provider/auth/auth_provider.dart';
 import 'package:barber_shop/provider/auth/function_provider.dart';
 import 'package:barber_shop/provider/db/appointment/appointment.dart';
+import 'package:barber_shop/provider/db/days_worked/days_worked_provider.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
-import 'package:barber_shop/provider/time/time.dart';
 import 'package:barber_shop/service/check_is_login.dart';
 import 'package:barber_shop/theme/my_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +19,6 @@ void main() async {
   );
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => Time()),
       ChangeNotifierProvider(create: (context) => FunctionsAdm()),
       ChangeNotifierProvider(
           create: (context) => AuthProvider(context: context)),
@@ -28,6 +27,7 @@ void main() async {
       ChangeNotifierProvider(create: (context) => ProfessionalDbProvider()),
       ChangeNotifierProvider(
           create: (context) => AppointmentProvider(context: context)),
+      ChangeNotifierProvider(create: (context) => DaysWorked(context: context)),
     ],
     child: const MyApp(),
   ));

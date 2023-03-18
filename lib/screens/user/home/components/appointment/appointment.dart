@@ -1,7 +1,7 @@
-import 'package:barber_shop/provider/db/appointment/appointment.dart';
+import 'package:barber_shop/provider/db/days_worked/days_worked_provider.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
-import 'package:barber_shop/screens/home/components/appointment/widgets/each_hour.dart';
-import 'package:barber_shop/screens/home/components/appointment/widgets/see_more.dart';
+import 'package:barber_shop/screens/user/home/components/appointment/widgets/each_hour.dart';
+import 'package:barber_shop/screens/user/home/components/appointment/widgets/see_more.dart';
 import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -14,8 +14,8 @@ class Appointment extends StatelessWidget {
   Widget build(BuildContext context) {
     ProfessionalDbProvider proDbProvider =
         Provider.of<ProfessionalDbProvider>(context);
-    AppointmentProvider appointmentProvider =
-        Provider.of<AppointmentProvider>(context);
+
+    DaysWorked daysWorked = Provider.of<DaysWorked>(context);
 
     return Center(
       child: Container(
@@ -33,7 +33,7 @@ class Appointment extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(left: 12),
                   child: Text(
-                    'Horários disponíveis para hoje',
+                    'Proximos horários disponíveis',
                     style:
                         TextStyle(color: ThemeColors.background, fontSize: 20),
                   ),
@@ -67,7 +67,7 @@ class Appointment extends StatelessWidget {
                                     'assets/loading_skeleton.json'),
                               ),
                             )))
-                    : appointmentProvider.listAppointment.isEmpty
+                    : daysWorked.listHourWork.isEmpty
                         ? Padding(
                             padding: const EdgeInsets.only(top: 20),
                             child: Column(
@@ -95,11 +95,9 @@ class Appointment extends StatelessWidget {
                             ),
                           )
                         : GridView.builder(
-                            itemCount:
-                                appointmentProvider.listAppointment.length >= 8
-                                    ? 8
-                                    : appointmentProvider
-                                        .listAppointment.length,
+                            itemCount: daysWorked.listHourWork.length >= 8
+                                ? 8
+                                : daysWorked.listHourWork.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 4,
@@ -124,8 +122,8 @@ class Appointment extends StatelessWidget {
                                         ),
                                       )
                                     : EachHour(
-                                        appointmentModel: appointmentProvider
-                                            .listAppointment[index])),
+                                        daysWorked:
+                                            daysWorked.listHourWork[index])),
                           ))
           ],
         ),

@@ -1,6 +1,6 @@
 import 'package:barber_shop/provider/auth/auth_provider.dart';
 import 'package:barber_shop/provider/db/admin/functions_admin.dart';
-import 'package:barber_shop/screens/admin/components/marked.dart';
+import 'package:barber_shop/screens/admin/components/markedhour/marked.dart';
 import 'package:barber_shop/screens/admin/components/workedhour/worked_hours.dart';
 import 'package:barber_shop/screens/admin/widgets/bottom_navigation.dart';
 import 'package:barber_shop/theme/theme_colors.dart';

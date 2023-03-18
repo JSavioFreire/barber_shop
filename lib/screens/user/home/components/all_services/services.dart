@@ -1,4 +1,4 @@
-import 'package:barber_shop/screens/home/components/all_services/widgets/each_service.dart';
+import 'package:barber_shop/screens/user/home/components/all_services/widgets/each_service.dart';
 import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 

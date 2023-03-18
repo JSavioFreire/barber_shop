@@ -1,5 +1,5 @@
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
-import 'package:barber_shop/screens/home/components/professionals/widgets/each_professional.dart';
+import 'package:barber_shop/screens/user/home/components/professionals/widgets/each_professional.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';

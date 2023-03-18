@@ -1,7 +1,9 @@
 class CurrentDate {
   DateTime currentDateHour() {
-    DateTime agora = DateTime.now().toUtc().add(const Duration(hours: -3));
-    return agora;
+    DateTime date = DateTime.now().toUtc().add(const Duration(hours: -3));
+    DateTime newDateTime =
+        DateTime(date.year, date.month, date.day, date.hour, 0, 0);
+    return newDateTime;
   }
 
   String dateWeekDay(int day) {

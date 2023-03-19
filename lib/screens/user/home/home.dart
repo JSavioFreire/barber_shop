@@ -1,6 +1,8 @@
-import 'package:barber_shop/components/drawer/drawer.dart';
 import 'package:barber_shop/components/footer/footer.dart';
 import 'package:barber_shop/components/header/header.dart';
+import 'package:barber_shop/components/header/widgets/icon_menu.dart';
+import 'package:barber_shop/components/header/widgets/welcome_header.dart';
+import 'package:barber_shop/components/my_scaffold/my_scaffold.dart';
 import 'package:barber_shop/screens/user/home/components/appointment/appointment.dart';
 import 'package:barber_shop/screens/user/home/components/box/box_primary.dart';
 import 'package:barber_shop/screens/user/home/components/professionals/professionals.dart';
@@ -13,18 +15,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
+    return MyScaffold(
       backgroundColor: ThemeColors.background,
-      endDrawer: const MyDrawer(),
-      body: SingleChildScrollView(
+      inside: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Header(),
-            ),
+            Header(
+                headerLeft: WelcomeHeader(),
+                headerRight: IconMenu(
+                  color: Colors.white,
+                )),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: BoxPrimary(),

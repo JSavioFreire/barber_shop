@@ -26,7 +26,7 @@ class Professionals extends StatelessWidget {
               SizedBox(
                 width: 80,
                 child: LottieBuilder.network(
-                  'https://assets2.lottiefiles.com/packages/lf20_xdveeu5t.json',
+                  'https://assets2.lottiefiles.com/packages/lf20_xdveeu5t.json',                  
                 ),
               )
             ],

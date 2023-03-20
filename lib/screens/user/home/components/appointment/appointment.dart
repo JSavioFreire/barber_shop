@@ -48,6 +48,7 @@ class Appointment extends StatelessWidget {
             Expanded(
                 child: proDbProvider.loadingPro
                     ? GridView.builder(
+                        padding: const EdgeInsets.only(top: 10),
                         itemCount: 8,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -95,6 +96,7 @@ class Appointment extends StatelessWidget {
                             ),
                           )
                         : GridView.builder(
+                            padding: const EdgeInsets.only(top: 10),
                             itemCount: daysWorked.listHourWork.length >= 8
                                 ? 8
                                 : daysWorked.listHourWork.length,

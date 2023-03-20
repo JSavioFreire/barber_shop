@@ -24,39 +24,48 @@ class AllHour extends StatelessWidget {
     return MyScaffold(
       backgroundColor: ThemeColors.secondary,
       inside: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Header(
-                headerLeft: IconBack(color: ThemeColors.background),
-                headerCenter: TextHeader(
-                    text: 'Horários Disponíveis',
-                    color: ThemeColors.background),
-                headerRight: IconMenu(color: ThemeColors.background)),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5,
-                  ),
-                  physics: BouncingScrollPhysics(),
-                  itemCount: daysWorked.listHourWork.length,
-                  itemBuilder: (contexnt, index) => proDbProvider.loadingPro
-                      ? Container(
-                          decoration: BoxDecoration(
-                            color: ThemeColors.primary,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: Lottie.asset('assets/loading_skeleton.json'),
-                          ),
-                        )
-                      : EachHour(daysWorked: daysWorked.listHourWork[index])),
-            )
-          ],
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Column(
+            children: [
+              const Header(
+                  headerLeft: IconBack(color: ThemeColors.background),
+                  headerCenter: TextHeader(
+                      text: 'Horários Disponíveis',
+                      color: ThemeColors.background),
+                  headerRight: IconMenu(color: ThemeColors.background)),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: GridView.builder(
+                      padding: EdgeInsets.zero,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 5,
+                      ),
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: daysWorked.listHourWork.length,
+                      itemBuilder: (contexnt, index) => proDbProvider.loadingPro
+                          ? Container(
+                              decoration: BoxDecoration(
+                                color: ThemeColors.primary,
+                                borderRadius: BorderRadius.circular(3),
+                              ),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: Lottie.asset(
+                                    'assets/loading_skeleton.json'),
+                              ),
+                            )
+                          : EachHour(
+                              daysWorked: daysWorked.listHourWork[index])),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

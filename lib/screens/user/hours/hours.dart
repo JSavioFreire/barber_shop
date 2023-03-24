@@ -22,7 +22,7 @@ class AllHour extends StatelessWidget {
     DaysWorked daysWorked = Provider.of<DaysWorked>(context);
 
     return MyScaffold(
-      backgroundColor: ThemeColors.secondary,
+      backgroundColor: ThemeColors.background,
       inside: SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
@@ -30,11 +30,10 @@ class AllHour extends StatelessWidget {
           child: Column(
             children: [
               const Header(
-                  headerLeft: IconBack(color: ThemeColors.background),
+                  headerLeft: IconBack(color: Colors.white),
                   headerCenter: TextHeader(
-                      text: 'Horários Disponíveis',
-                      color: ThemeColors.background),
-                  headerRight: IconMenu(color: ThemeColors.background)),
+                      text: 'Horários Disponíveis', color: Colors.white),
+                  headerRight: IconMenu(color: Colors.white)),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(10),

@@ -1,4 +1,5 @@
 import 'package:barber_shop/provider/db/admin/functions_admin.dart';
+import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +11,7 @@ class MyBottomNavigation extends StatelessWidget {
     FunctionsAdm functionsAdm = Provider.of<FunctionsAdm>(context);
 
     return BottomNavigationBar(
-      backgroundColor: Colors.black12,
+      backgroundColor: ThemeColors.background,
       onTap: (value) => functionsAdm.changeNavigationBottomController(value),
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
@@ -23,7 +24,6 @@ class MyBottomNavigation extends StatelessWidget {
         )
       ],
       currentIndex: functionsAdm.navigationBottomController,
-      selectedItemColor: Colors.grey,
     );
   }
 }

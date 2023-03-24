@@ -26,7 +26,6 @@ class AuthProvider extends ChangeNotifier {
 
   getUser() {
     users = auth.currentUser;
-
     notifyListeners();
   }
 

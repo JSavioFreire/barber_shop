@@ -75,7 +75,7 @@ class FunctionsAuthProvider extends ChangeNotifier {
       buttonInLoading = false;
       functionsAdm.isAdmin = false;
 
-      UserInfoModel userInfo = UserInfoModel(isAdmin: false);
+      UserInfoModel userInfo = UserInfoModel(isAdmin: false, userPhone: phone.text);
       await db.collection('userInfo').doc(email.text).set(userInfo.toMap());
 
       notifyListeners();

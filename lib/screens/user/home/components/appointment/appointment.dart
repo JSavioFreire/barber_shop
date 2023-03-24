@@ -69,31 +69,28 @@ class Appointment extends StatelessWidget {
                               ),
                             )))
                     : daysWorked.listHourWork.isEmpty
-                        ? Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                const Text(
-                                  'Não temos horários disponíveis no momento.',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: ThemeColors.background),
-                                ),
-                                SizedBox(
-                                  width: 100,
-                                  child: Lottie.network(
-                                      'https://assets1.lottiefiles.com/packages/lf20_8gwnjakm.json',
-                                      repeat: false),
-                                ),
-                                const Text(
-                                  'Tente novamente mais tarde!',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: ThemeColors.background),
-                                ),
-                              ],
-                            ),
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              const Text(
+                                'Não temos horários disponíveis no momento.',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: ThemeColors.background),
+                              ),
+                              SizedBox(
+                                width: 100,
+                                child: Lottie.network(
+                                    'https://assets1.lottiefiles.com/packages/lf20_8gwnjakm.json',
+                                    repeat: false),
+                              ),
+                              const Text(
+                                'Tente novamente mais tarde!',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: ThemeColors.background),
+                              ),
+                            ],
                           )
                         : GridView.builder(
                             padding: const EdgeInsets.only(top: 10),

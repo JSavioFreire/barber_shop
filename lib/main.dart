@@ -3,6 +3,7 @@ import 'package:barber_shop/provider/auth/auth_provider.dart';
 import 'package:barber_shop/provider/auth/function_provider.dart';
 import 'package:barber_shop/provider/db/days_worked/days_worked_provider.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
+import 'package:barber_shop/screens/each_hours/each_hours.dart';
 import 'package:barber_shop/screens/user/hours/hours.dart';
 import 'package:barber_shop/service/check_is_login.dart';
 import 'package:barber_shop/theme/my_theme.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const CheckIsLogin(),
         '/hours': (context) => const AllHour(),
+        '/eachhours':(context)=> const EachHoursScreen()
       },
     );
   }

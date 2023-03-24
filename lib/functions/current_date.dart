@@ -25,4 +25,18 @@ class CurrentDate {
       return '';
     }
   }
+
+  String todayOrTomorrow(DateTime day) {
+    if (day.day == currentDateHour().day &&
+        day.month == currentDateHour().month &&
+        day.year == currentDateHour().year) {
+      return 'Hoje';
+    } else if (day.day == currentDateHour().add(const Duration(days: 1)).day &&
+        day.month == currentDateHour().add(const Duration(days: 1)).month &&
+        day.year == currentDateHour().add(const Duration(days: 1)).year) {
+      return 'Amanhã';
+    } else {
+      return dateWeekDay(day.weekday);
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:barber_shop/functions/current_date.dart';
 import 'package:barber_shop/model/days_worked.dart';
 import 'package:barber_shop/model/professional.dart';
+import 'package:barber_shop/provider/auth/auth_provider.dart';
 import 'package:barber_shop/provider/db/professional/professional_db_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +17,19 @@ class DaysWorked extends ChangeNotifier {
 
   late ProfessionalDbProvider professionalDbProvider =
       Provider.of<ProfessionalDbProvider>(context, listen: false);
+  late AuthProvider authProvider =
+      Provider.of<AuthProvider>(context, listen: false);
 
-  List listDayWork = [];
-  List listHourWork = [];
+  List<DayWorkedModel> listDayWork = [];
+  List<DayWorkedModel> listHourWork = [];
+  List<DayWorkedModel> listHourMarked = [];
   bool loading = true;
+  String userPhone = '';
+  TextEditingController userObs = TextEditingController(text: '');
 
   void addDayWorkedToDb(DateTime date, ProfessionalModel pro) {
-    DayWorkedModel dayWorkedModel =
-        DayWorkedModel(day: date.toString(), proName: pro.name);
+    DayWorkedModel dayWorkedModel = DayWorkedModel(
+        day: date.toString(), proName: pro.name, isMarked: false);
 
     db
         .collection('availableDays')
@@ -33,7 +39,10 @@ class DaysWorked extends ChangeNotifier {
     for (int i = 8; i < 20; i++) {
       DateTime newDateTime = DateTime(date.year, date.month, date.day, i, 0, 0);
       DayWorkedModel dayWorkedModel = DayWorkedModel(
-          day: newDateTime.toString(), proName: pro.name, hours: '$i:00 h');
+          day: newDateTime.toString(),
+          proName: pro.name,
+          hours: '$i:00 h',
+          isMarked: false);
 
       db
           .collection('availableHours')
@@ -66,15 +75,25 @@ class DaysWorked extends ChangeNotifier {
   void seeHourWorkedToDb() async {
     loading = true;
     List<DayWorkedModel> temp = [];
+    List<DayWorkedModel> tempMarked = [];
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await db.collection('availableHours').orderBy('day').get();
 
     for (var doc in snapshot.docs) {
       DateTime date = DateTime.parse(doc.data()['day']);
       if (date.isAfter(CurrentDate().currentDateHour())) {
-        temp.add(DayWorkedModel.fromMap(doc.data()));
-        listHourWork = temp;
+        if (doc.data()['isMarked'] == false) {
+          temp.add(DayWorkedModel.fromMap(doc.data()));
+        }
       }
+      if (date.day == CurrentDate().currentDateHour().day &&
+          date.month == CurrentDate().currentDateHour().month &&
+          date.year == CurrentDate().currentDateHour().year &&
+          doc.data()['isMarked'] == true) {
+        tempMarked.add(DayWorkedModel.fromMap(doc.data()));
+      }
+      listHourWork = temp;
+      listHourMarked = tempMarked;
     }
 
     loading = false;
@@ -91,5 +110,33 @@ class DaysWorked extends ChangeNotifier {
       }
     }
     return false;
+  }
+
+  void markerService(service) async {
+    DocumentSnapshot<Map<String, dynamic>> snapshot =
+        await db.collection('userInfo').doc(authProvider.users!.email).get();
+    userPhone = snapshot['userPhone'];
+
+    DayWorkedModel dayWorkedModel = DayWorkedModel(
+        day: service.day,
+        proName: service.proName,
+        hours: service.hours,
+        isMarked: true,
+        userName: authProvider.users!.displayName,
+        userEmail: authProvider.users!.email,
+        userPhone: userPhone,
+        userObs: userObs.text);
+
+    DateTime date = DateTime.parse(dayWorkedModel.day);
+
+    db
+        .collection('availableHours')
+        .doc(
+            '${dayWorkedModel.proName} ${date.day}-${date.month}-${date.year} ${service.hours}')
+        .set(dayWorkedModel.toMap());
+
+    userObs.text = '';
+    seeHourWorkedToDb();
+    notifyListeners();
   }
 }

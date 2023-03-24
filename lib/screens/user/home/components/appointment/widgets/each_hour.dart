@@ -23,11 +23,11 @@ class EachHour extends StatelessWidget {
             children: [
               Text(
                 CurrentDate().todayOrTomorrow(toDate),
-                style: const TextStyle(fontSize: 11, color: Colors.white),
+                style: const TextStyle(fontSize: 10, color: Colors.white),
               ),
               Text(
                 '${toDate.day}/${toDate.month}',
-                style: const TextStyle(fontSize: 11, color: Colors.white),
+                style: const TextStyle(fontSize: 10, color: Colors.white),
               ),
             ],
           ),

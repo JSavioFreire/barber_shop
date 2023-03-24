@@ -19,7 +19,7 @@ class Appointment extends StatelessWidget {
 
     return Center(
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.9,
+        width: MediaQuery.of(context).size.width * 0.93,
         height: 250,
         padding: const EdgeInsets.symmetric(horizontal: 5),
         decoration: BoxDecoration(

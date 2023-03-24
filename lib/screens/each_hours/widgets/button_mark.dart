@@ -2,6 +2,7 @@ import 'package:barber_shop/model/days_worked.dart';
 import 'package:barber_shop/provider/db/days_worked/days_worked_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:barber_shop/components/snackbar/my_snackbar.dart';
 
 class ButtonMark extends StatelessWidget {
   final DayWorkedModel allArg;
@@ -17,6 +18,7 @@ class ButtonMark extends StatelessWidget {
           onPressed: () {
             daysWorked.markerService(allArg);
             Navigator.pop(context);
+            mySnackBar(context);
           },
           child: const Text(
             'Reservar horário',

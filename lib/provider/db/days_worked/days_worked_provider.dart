@@ -89,7 +89,7 @@ class DaysWorked extends ChangeNotifier {
         }
       }
       if (doc.data()['isMarked'] == true &&
-              date.isAfter(CurrentDate().currentDateHour()) ||
+              date.isAfter(CurrentDate().currentDateHour()) &&
           date.day == CurrentDate().currentDateHour().day &&
               date.month == CurrentDate().currentDateHour().month &&
               date.year == CurrentDate().currentDateHour().year) {

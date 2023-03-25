@@ -4,15 +4,17 @@ import 'package:lottie/lottie.dart';
 void mySnackBar(BuildContext context) {
   final snackbar = SnackBar(
     content: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SizedBox(
-            width: 70,
-            child: LottieBuilder.asset('assets/snack.json', repeat: false)),
+        LottieBuilder.asset(
+          'assets/snack.json',
+          repeat: false,
+          height: 30,
+        ),
         const Text('Horário reservado com sucesso!'),
       ],
     ),
     duration: const Duration(seconds: 3),
   );
-
   ScaffoldMessenger.of(context).showSnackBar(snackbar);
 }

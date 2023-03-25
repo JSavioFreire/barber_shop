@@ -3,9 +3,9 @@ import 'package:barber_shop/components/header/widgets/icon_back.dart';
 import 'package:barber_shop/components/header/widgets/icon_menu.dart';
 import 'package:barber_shop/components/my_scaffold/my_scaffold.dart';
 import 'package:barber_shop/functions/current_date.dart';
-import 'package:barber_shop/screens/each_hours/widgets/button_mark.dart';
-import 'package:barber_shop/screens/each_hours/widgets/row_text.dart';
-import 'package:barber_shop/screens/each_hours/widgets/text_area.dart';
+import 'package:barber_shop/screens/user/each_hours/widgets/button_mark.dart';
+import 'package:barber_shop/screens/user/each_hours/widgets/row_text.dart';
+import 'package:barber_shop/screens/user/each_hours/widgets/text_area.dart';
 import 'package:barber_shop/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 

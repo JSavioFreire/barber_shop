@@ -23,6 +23,7 @@ class DaysWorked extends ChangeNotifier {
   List<DayWorkedModel> listDayWork = [];
   List<DayWorkedModel> listHourWork = [];
   List<DayWorkedModel> listHourMarked = [];
+  List<DayWorkedModel> listHourMarkedUser = [];
   bool loading = true;
   String userPhone = '';
   TextEditingController userObs = TextEditingController(text: '');
@@ -76,6 +77,7 @@ class DaysWorked extends ChangeNotifier {
     loading = true;
     List<DayWorkedModel> temp = [];
     List<DayWorkedModel> tempMarked = [];
+    List<DayWorkedModel> tempMarkedUser = [];
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await db.collection('availableHours').orderBy('day').get();
 
@@ -86,14 +88,20 @@ class DaysWorked extends ChangeNotifier {
           temp.add(DayWorkedModel.fromMap(doc.data()));
         }
       }
-      if (date.day == CurrentDate().currentDateHour().day &&
-          date.month == CurrentDate().currentDateHour().month &&
-          date.year == CurrentDate().currentDateHour().year &&
-          doc.data()['isMarked'] == true) {
+      if (doc.data()['isMarked'] == true &&
+              date.isAfter(CurrentDate().currentDateHour()) ||
+          date.day == CurrentDate().currentDateHour().day &&
+              date.month == CurrentDate().currentDateHour().month &&
+              date.year == CurrentDate().currentDateHour().year) {
         tempMarked.add(DayWorkedModel.fromMap(doc.data()));
+
+        if (doc.data()['userEmail'] == authProvider.users!.email) {
+          tempMarkedUser.add(DayWorkedModel.fromMap(doc.data()));
+        }
       }
       listHourWork = temp;
       listHourMarked = tempMarked;
+      listHourMarkedUser = tempMarkedUser;
     }
 
     loading = false;

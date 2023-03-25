@@ -8,10 +8,10 @@ void mySnackBar(BuildContext context) {
         SizedBox(
             width: 70,
             child: LottieBuilder.asset('assets/snack.json', repeat: false)),
-        Text('Horário reservado com sucesso!'),
+        const Text('Horário reservado com sucesso!'),
       ],
     ),
-    duration: Duration(seconds: 3),
+    duration: const Duration(seconds: 3),
   );
 
   ScaffoldMessenger.of(context).showSnackBar(snackbar);

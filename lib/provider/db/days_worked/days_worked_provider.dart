@@ -89,15 +89,11 @@ class DaysWorked extends ChangeNotifier {
         }
       }
       if (doc.data()['isMarked'] == true &&
-              date.isAfter(CurrentDate().currentDateHour()) &&
-          date.day == CurrentDate().currentDateHour().day &&
-              date.month == CurrentDate().currentDateHour().month &&
-              date.year == CurrentDate().currentDateHour().year) {
+          date.isAfter(CurrentDate().currentDateHour())) {
         tempMarked.add(DayWorkedModel.fromMap(doc.data()));
-
-        if (doc.data()['userEmail'] == authProvider.users!.email) {
-          tempMarkedUser.add(DayWorkedModel.fromMap(doc.data()));
-        }
+      }
+      if (doc.data()['userEmail'] == authProvider.users!.email) {
+        tempMarkedUser.add(DayWorkedModel.fromMap(doc.data()));
       }
       listHourWork = temp;
       listHourMarked = tempMarked;
